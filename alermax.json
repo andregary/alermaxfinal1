@@ -1,0 +1,58 @@
+{
+    "name": "alermax1",
+    "id": "/subscriptions/c43fbf51-c282-454b-9758-efb2911b9951/resourceGroups/alermax/providers/Microsoft.Compute/virtualMachines/alermax1",
+    "type": "Microsoft.Compute/virtualMachines",
+    "location": "brazilsouth",
+    "properties": {
+        "vmId": "b9928671-74ab-42f2-811f-acdd1845a474",
+        "hardwareProfile": {
+            "vmSize": "Standard_DS1_v2"
+        },
+        "storageProfile": {
+            "imageReference": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2019-Datacenter",
+                "version": "latest"
+            },
+            "osDisk": {
+                "osType": "Windows",
+                "name": "alermax1_OsDisk_1_a51eb0ee8a8b4c5b8cfe60a323f69106",
+                "createOption": "FromImage",
+                "caching": "ReadWrite",
+                "managedDisk": {
+                    "storageAccountType": "Premium_LRS",
+                    "id": "/subscriptions/c43fbf51-c282-454b-9758-efb2911b9951/resourceGroups/alermax/providers/Microsoft.Compute/disks/alermax1_OsDisk_1_a51eb0ee8a8b4c5b8cfe60a323f69106"
+                },
+                "diskSizeGB": 127
+            },
+            "dataDisks": []
+        },
+        "osProfile": {
+            "computerName": "alermax1",
+            "adminUsername": "andregarysud95",
+            "windowsConfiguration": {
+                "provisionVMAgent": true,
+                "enableAutomaticUpdates": true
+            },
+            "secrets": []
+        },
+        "networkProfile": {
+            "networkInterfaces": [
+                {
+                    "id": "/subscriptions/c43fbf51-c282-454b-9758-efb2911b9951/resourceGroups/alermax/providers/Microsoft.Network/networkInterfaces/alermax138"
+                }
+            ]
+        },
+        "diagnosticsProfile": {
+            "bootDiagnostics": {
+                "enabled": true
+            }
+        },
+        "licenseType": "Windows_Server",
+        "provisioningState": "Succeeded"
+    },
+    "zones": [
+        "1"
+    ]
+}
