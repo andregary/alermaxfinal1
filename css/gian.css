@@ -1,0 +1,41 @@
+body,
+html {
+
+  margin: 50px;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+ 
+  font-family: sans-serif;
+}
+
+body * {
+  font-weight: 200;
+}
+
+h1 {
+  position: absolute;
+  background: white;
+  padding: 10px;
+}
+
+#map {
+  margin-top: 100px;
+  height: 100%;
+}
+
+.leaflet-container {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+h1 {
+  right: 10px;
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 10px;
+  font-weight: 200;
+  z-index: 10000;
+}

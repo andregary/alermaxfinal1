@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="css/gian.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css">
+ 
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="js/heatmap.js"></script>
+    <script src="js/leaflet-heatmap.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alermax - seguridad ciudadana</title>
+  
+</head>
+<body>
+</style>
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  </style>
+  <div class="container">
+    <div class="container-fluid">
+      <img src="img/core-img/logo.png" alt="">
+      <a class="navbar-brand" href="#" ></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#signinModal">INGRESAR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">REGISTRARSE</a>
+          </li>
+          <!-- SOLO AVILITAR CUANDO SE HAYA INGRESADO RUTA DE INICIO DE SECIÓN, ESTO SIRVE PARA SALIR DE LA SECION:  <li class="nav-item">
+                            <a class="nav-link" href="index.html" id="logout">SALIR</a>
+                        </li>-->
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" id="inicio">INICIO</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingresa tus datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="signup-form">
+          <div class="form-group">
+            <input type="text" id="signup-email" class="form-control" placeholder="Escribe tu Email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-password" class="form-control"
+              placeholder="Pon tu Contraseña de 06 digitos" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingresa tu cuenta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="login-form">
+          <div class="form-group">
+            <input type="text" id="login-email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="login-password" class="form-control" placeholder="Contraseña" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+       
+   
+   <div id="map"></div>
+
+    <script>
+      window.onload = function() {
+
+        var testData = {
+          max: 18,
+          data: [{lat: -11.896601, lng: -77.041822, count: .1},
+          {lat: -12.0552493, lng:-77.0627752, count: 0.1}, //CL
+          {lat: -11.9760644, lng:-77.0632476, count: 0.2}, //SJL
+          {lat: -12.003937, lng:-77.1881026, count: 0.1},  //CLLO
+          {lat: -12.0389074, lng:-77.0306132, count: 0.2},  //ATE
+          {lat: -11.9879178, lng:-77.1206819, count: 0.1},  //SMP
+          {lat: -12.0741568, lng:-77.0334269, count: 0.2},  //VICT
+          {lat: -11.9325314, lng:-77.066268, count: 0.1},   //CMAS
+          {lat: -12.174263, lng:-76.9938834, count: 0.2},  //VMT
+          {lat: -11.8747973, lng:-77.1614746, count: 0.1},  //PUEPIE
+          {lat: -11.9648541, lng:-77.1090628, count: 0.2},  //OLIV
+          {lat: -11.9891617, lng:-77.0838287, count: 0.1},  //INDEP
+          {lat: -11.785976, lng:-77.0873855, count: 0.2},  //CARABAY
+          {lat: -12.1142766, lng:-77.0281992, count: 0.1},  //SURQLL
+          {lat: -11.4874313, lng:-77.2501362, count: 0.2},
+          ]
+        };
+
+        var baseLayer = L.tileLayer(
+          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+          }
+        );
+
+        var cfg = {
+          // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+          "radius": 0.1,
+          "maxOpacity": .8, 
+          // scales the radius based on map zoom
+          "scaleRadius": true, 
+          // if set to false the heatmap uses the global maximum for colorization
+          // if activated: uses the data maximum within the current map boundaries 
+          //   (there will always be a red spot with useLocalExtremas true)
+          "useLocalExtrema": true,
+          // which field name in your data represents the latitude - default "lat"
+          latField: 'lat',
+          // which field name in your data represents the longitude - default "lng"
+          lngField: 'lng',
+          // which field name in your data represents the data value - default "value"
+          valueField: 'count'
+        };
+
+
+        var heatmapLayer = new HeatmapOverlay(cfg);
+
+        var map = new L.Map('map', {
+          center: new L.LatLng(-12.026498,-77.2686674),
+          zoom: 8,
+          layers: [baseLayer, heatmapLayer]
+        });
+
+        heatmapLayer.setData(testData);
+
+        // make accessible for debugging
+        layer = heatmapLayer;
+      };
+    </script>
+
+</body>
+</html>
